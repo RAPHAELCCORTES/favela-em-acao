@@ -173,23 +173,17 @@ def salvar_projeto(request):
     if request.method == 'POST':
 
         projeto_id = request.POST.get('id')
-
         titulo = request.POST.get('title', '')
         descricao = request.POST.get('desc', '')
         categoria = request.POST.get('category', '')
-
         imagem = request.FILES.get('img')
 
         if projeto_id:
-
             projeto = Projeto.objects.get(id=projeto_id)
-
             projeto.titulo = titulo
             projeto.descricao = descricao
             projeto.categoria = categoria
-
         else:
-
             projeto = Projeto.objects.create(
                 titulo=titulo,
                 descricao=descricao,
@@ -197,34 +191,23 @@ def salvar_projeto(request):
             )
 
         if imagem:
+            if not arquivo_eh_imagem(imagem):
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Formato inválido. Envie JPG, PNG ou WEBP.'
+                })
+
+            if not arquivo_tamanho_valido(imagem):
+                return JsonResponse({
+                    'success': False,
+                    'message': 'Imagem muito grande. Máximo de 5 MB.'
+                })
+
             projeto.imagem = imagem
 
         projeto.save()
 
-            if imagem:
-
-                if not arquivo_eh_imagem(imagem):
-                    return JsonResponse({
-                        'success': False,
-                        'message': 'Formato inválido. Envie JPG, PNG ou WEBP.'
-                    })
-
-                if not arquivo_tamanho_valido(imagem):
-                    return JsonResponse({
-                        'success': False,
-                        'message': 'Imagem muito grande. Máximo de 5 MB.'
-                    })
-
-                projeto.imagem = imagem
-
-            projeto.save()
-
-            return JsonResponse({
-                'success': True
-            })
-
         imagens_galeria = request.FILES.getlist('gallery')
-
         imagens_atuais = projeto.galeria.count()
 
         if imagens_atuais + len(imagens_galeria) > 10:
@@ -234,7 +217,6 @@ def salvar_projeto(request):
             })
 
         for imagem_extra in imagens_galeria:
-
             if not arquivo_eh_imagem(imagem_extra):
                 return JsonResponse({
                     'success': False,
