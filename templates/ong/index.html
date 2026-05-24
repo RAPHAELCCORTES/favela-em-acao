@@ -1,0 +1,723 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'assets/favicon.png' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coletivo Cultural e Social Favela em Ação</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+    <!-- Navigation -->
+<nav class="navbar glass-effect">
+    <div class="nav-container">
+
+        <div class="logo">
+        <img
+         src="{% static 'assets/logo-ong.png' %}"
+         alt="Favela em Ação"
+         class="site-logo"
+        >
+        </div>
+
+        <ul class="nav-links">
+            <li><button class="nav-btn active" data-target="inicio">Início</button></li>
+            <li><button class="nav-btn" data-target="projetos">Projetos</button></li>
+            <li><button class="nav-btn" data-target="campanhas">Campanhas</button></li>
+            <li><button class="nav-btn" data-target="fale-conosco">Contato</button></li>
+
+            <li id="nav-item-admin" style="display:none;">
+                <button class="nav-btn admin-link" data-target="admin">
+                    <i class='bx bx-cog'></i> Painel Admin
+                </button>
+            </li>
+        </ul>
+
+        <div class="mobile-menu-toggle">
+            <i class='bx bx-menu'></i>
+        </div>
+
+    </div>
+</nav>
+
+    <main>
+        <!-- ABA: INÍCIO -->
+        <section id="inicio" class="tab-content active-tab">
+            
+            <!-- Hero Section -->
+            <header class="hero-section" id="hero-section-bg"
+style="background-image: linear-gradient(to bottom, rgba(15, 76, 129, 0.7), rgba(15, 76, 129, 0.9)), url('{% static 'assets/hero.png' %}');">
+
+    <div class="hero-content animate-up">
+        <span class="badge">Nossa Trajetória</span>
+
+        <h1 class="hero-title" id="dyn-hero-title">
+            Transformando Realidades <br/>com Cultura e Ação Social
+        </h1>
+
+        <p class="hero-teaser" id="dyn-hero-teaser">
+            O Coletivo Favela em Ação atua transformando vidas na comunidade, promovendo educação, cultura e assistência para quem mais precisa.
+        </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat"><span class="stat-number">+6</span><span class="stat-label">Anos de Histórias</span></div>
+                        <div class="stat"><span class="stat-number">485</span><span class="stat-label">Crianças e adolescentes impactadas diretamente</span></div>
+                        <div class="stat"><span class="stat-number">2237</span><span class="stat-label">Pessoas impactadas indiretamente</span></div>
+                    </div>
+
+                    <div class="hero-actions">
+
+                    <button
+                    type="button"
+                    class="btn btn-primary pulse-btn"
+                    onclick="openDonationModal()">
+
+                    <i class='bx bx-heart'></i> DOE AQUI
+                    </button>
+
+                    <a href="https://wa.me/5521989330529?text=Olá!%20Gostaria%20de%20ser%20voluntário%20no%20Favela%20em%20Ação!"
+                     target="_blank"
+                     class="btn btn-secondary">
+
+                    <i class='bx bx-group'></i> Seja Voluntário
+                    </a>
+
+                   </div>
+                </div>
+            </header>
+
+            <!-- Missão, Visão e Valores -->
+            <div class="mvv-section grid-container padded-section">
+                <div class="mvv-card card-lilac fade-scroll">
+                    <i class='bx bx-target-lock icon-large'></i>
+                    <h3>Nossa Missão</h3>
+                    <p>Contribuir para o desenvolvimento
+                       social de crianças, adolescentes e
+                       jovens em situação de vulnerabilidade
+                       e risco social através de atividades
+                       culturais, educacionais e esportivas
+                       para melhoria da qualidade de vida e
+                       estabelecimento da cultura de paz.</p>
+                </div>
+                <div class="mvv-card card-orange fade-scroll delay-1">
+                    <i class='bx bx-low-vision icon-large'></i>
+                    <h3>Nossa Visão</h3>
+                    <p>Contribuir para redução de desigualdades sociais, impactando gerações futuras.</p>
+                </div>
+                <div class="mvv-card card-green fade-scroll delay-2">
+                    <i class='bx bx-star icon-large'></i>
+                    <h3>Nossos Valores</h3>
+                    <p>Amor pelo próximo, Comprometimento com a causa, Respeito pela diversidade, Solidariedade e Transparência.</p>
+                </div>
+            </div>
+
+            <!-- Quadrados Direcionais -->
+            <div class="directions-section padded-section gradient-bg">
+                <h2 class="section-title text-center"
+                    style="color:#FFFFFF; text-shadow:0 2px 8px rgba(0,0,0,0.25);">Conheça mais sobre nós</h2>
+                <div class="grid-container">
+                    <div class="direction-box historia-box">
+                        <div class="box-content">
+                            <h3>HISTÓRIA</h3>
+                            <button class="btn btn-outline-light" onclick="openHistoriaModal()">Saiba Mais</button>
+                        </div>
+                    </div>
+                    <div class="direction-box projetos-box">
+                        <div class="box-content">
+                            <h3>PROJETOS</h3>
+                            <button class="btn btn-outline-light nav-trigger" data-target="projetos">Saiba Mais</button>
+                        </div>
+                    </div>
+                    <div class="direction-box premiacoes-box">
+                        <div class="box-content">
+                            <h3>PREMIAÇÕES E PARCEIROS</h3>
+                            <button class="btn btn-outline-light" onclick="openParceirosModal()">Saiba Mais</button>
+                        </div>
+                    </div>
+                    <div class="direction-box apoio-box">
+                        <div class="box-content">
+                            <h3>APOIO</h3>
+                            <button class="btn btn-outline-light" onclick="openApoioModal()">Saiba Mais</button>
+                        </div>
+                    </div>
+                    <div class="direction-box media-card">
+                        <div class="box-content">
+                            <h3>NÓS NA MÍDIA</h3>
+                            <button class="btn btn-outline-light" onclick="openMidiaModal()">Saiba Mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mural de Apoio (Comentários) -->
+            <div class="comments-section padded-section gradient-bg" style="margin-top: 3rem;">
+                <h2 class="section-title text-center text-white" style=" color:#FFFFFF; text-shadow:0 2px 8px rgba(0,0,0,0.25); margin-bottom: 2rem;">Mural de Apoio (Comentários)</h2>
+                <p class="text-center text-white" style="margin-bottom: 2rem; opacity: 0.9;">Deixe uma mensagem de apoio para a nossa ONG!</p>
+                
+                <div class="comments-wrapper glass-effect fade-scroll" style="max-width: 800px; margin: 0 auto; padding: 2.5rem; border-radius: 20px;">
+                    <form id="commentForm" style="display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+                        {% csrf_token %}
+                        <input type="text" id="commentName" placeholder="Seu nome" required style="padding: 1rem; border-radius: 8px; border: none; flex: 1; min-width: 200px;">
+                        <input type="text" id="commentText" placeholder="Escreva sua mensagem..." required style="padding: 1rem; border-radius: 8px; border: none; flex: 2; min-width: 250px;">
+                        <button type="submit" class="btn btn-secondary" id="commentSubmitBtn" style="white-space: nowrap;">Enviar</button>
+                    </form>
+                    
+                    <div id="commentsList" style="display: flex; flex-direction: column; gap: 1rem;">
+                        <!-- Comentários Injetados via JS -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- ABA: PROJETOS OU OFICINAS -->
+        <section id="projetos" class="tab-content">
+            <div class="header-banner banner-projetos">
+                <h1>Projetos e Oficinas</h1>
+                <p>Educação e criatividade que abrem portas.</p>
+            </div>
+            
+            <div class="padded-section">
+                <!-- Injetado via Javascript -->
+                <div id="projetos-container" class="projects-grid"></div>
+            </div>
+        </section>
+
+        <!-- ABA: CAMPANHAS -->
+        <section id="campanhas" class="tab-content">
+            <div class="header-banner banner-campanhas">
+                <h1>Campanhas Sazonais</h1>
+                <p id="dyn-campanha-subtitle">Juntos fazemos a diferença nas datas especiais.</p>
+            </div>
+            
+            <div class="padded-section campaigns-timeline" id="campanhas-container">
+               <!-- Injetado via Javascript -->
+            </div>
+        </section>
+
+        <!-- ABA: FALE CONOSCO -->
+        <section id="fale-conosco" class="tab-content">
+            <div class="header-banner banner-contato">
+                <h1>Fale Conosco</h1>
+                <p>Nossas portas estão sempre abertas para você.</p>
+            </div>
+            
+            <div class="padded-section split-container">
+                <div class="contact-form-wrapper form-card glass-effect fade-scroll">
+                    <h2>Preencha o formulário e agende a sua visita conosco!</h2>
+                    <form id="contactForm" class="contact-form">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <label>Nome Completo</label>
+                            <input type="text" id="contactName" placeholder="Seu nome" required>
+                        </div>
+                        <div class="input-group">
+                            <label>WhatsApp / Telefone</label>
+                            <input type="tel" id="contactPhone" placeholder="(XX) XXXXX-XXXX" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Mensagem ou Observação</label>
+                            <textarea id="contactMessage" rows="4" placeholder="Alguma dúvida ou assunto específico?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full" id="contactSubmitBtn">Agendar Visita</button>
+                    </form>
+                </div>
+
+                <div class="contact-info-wrapper fade-scroll delay-1">
+                    <h3>Ou fale com a gente pelas Redes Sociais!</h3>
+                    <p class="subtitle">Estamos sempre online para tirar as suas dúvidas e receber seu apoio.</p>
+                    <ul class="contact-methods">
+                        <li>
+                            <a href="https://wa.me/5521989330529" target="_blank" class="contact-link">
+                                <div class="icon-circle whatsapp"><i class='bx bxl-whatsapp'></i></div>
+                                <span>(21) 98933-0525</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/favelaemacaooficial/" target="_blank" class="contact-link">
+                                <div class="icon-circle instagram"><i class='bx bxl-instagram'></i></div>
+                                <span>@favelaemacaooficial</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA: ADMIN (Nova Área) -->
+        <section id="admin" class="tab-content">
+            <div class="header-banner" style="background: #1E293B; padding: 6rem 10% 2rem;">
+                <h1><i class='bx bx-slider-alt'></i> Painel do Administrador</h1>
+                <p>Altere os textos, imagens e temas do site em tempo real.</p>
+            </div>
+
+            <div class="padded-section admin-dashboard">
+                <div class="admin-panel glass-effect">
+                    
+                    <div class="admin-tabs">
+                        <button class="admin-tab-btn active" data-tab="admin-dashboard">Dashboard</button>
+                        <button class="admin-tab-btn" data-tab="admin-textos">Textos da Home</button>
+                        <button class="admin-tab-btn" data-tab="admin-projetos">Meus Projetos</button>
+                        <button class="admin-tab-btn" data-tab="admin-campanhas">Campanhas</button>
+                        <button class="admin-tab-btn" data-tab="admin-mensagens">Mensagens & Comentários</button>
+                        <button class="admin-tab-btn" data-tab="admin-sistema">Opções do Sistema</button>
+                        <button class="admin-tab-btn" style="color: #ef4444; margin-top: auto;" onclick="logoutAdmin()"><i class='bx bx-log-out'></i> Sair</button>
+
+                    </div>
+
+                    <div class="admin-content">
+                        <div id="admin-dashboard" class="admin-section active">
+                        <h2>Resumo do Sistema</h2>
+                        <p class="mb-2">Visão geral dos conteúdos cadastrados.</p>
+
+                     <div class="grid-container">
+        <div class="mvv-card">
+            <h3>Projetos</h3>
+            <p id="dashProjetos" class="stat-number">0</p>
+        </div>
+
+        <div class="mvv-card">
+            <h3>Campanhas</h3>
+            <p id="dashCampanhas" class="stat-number">0</p>
+        </div>
+
+        <div class="mvv-card">
+            <h3>Comentários</h3>
+            <p id="dashComentarios" class="stat-number">0</p>
+        </div>
+
+        <div class="mvv-card">
+            <h3>Contatos</h3>
+            <p id="dashContatos" class="stat-number">0</p>
+        </div>
+    </div>
+</div>
+
+                        <!-- Aba Textos -->
+                        <div id="admin-textos" class="admin-section">
+                            <h2>Textos e Banner da Página Inicial</h2>
+                            <div class="input-group">
+                                <label>Título Principal</label>
+                                <input type="text" id="editHeroTitle" placeholder="Ex: Transformando Realidades...">
+                            </div>
+                            <div class="input-group">
+                                <label>Subtítulo (Resumo)</label>
+                                <textarea id="editHeroTeaser" rows="3"></textarea>
+                            </div>
+                            <div class="input-group">
+                                <label>Imagem de Fundo</label>
+                                <input type="file" id="editHeroImg" accept="image/*">
+                                <small id="editHeroImgAtual" style="display:block; margin-top:0.5rem; color:#64748B;"></small>
+                            </div>
+                            <button class="btn btn-primary" onclick="saveAdminTexts()">Salvar Textos da Home</button>
+                        </div>
+
+                        <!-- Aba Projetos -->
+                        <div id="admin-projetos" class="admin-section">
+                            <h2>Gerenciar Projetos e Oficinas</h2>
+                            <p class="mb-2">Adicione ou edite os projetos exibidos no site.</p>
+                            
+                            <div id="admin-projetos-list" class="admin-items-list">
+                                <!-- Renderizado via JS -->
+                            </div>
+                            
+                            <button class="btn btn-secondary mt-2" onclick="openProjectModal()">+ Adicionar Novo Projeto</button>
+                        </div>
+
+                        <!-- Aba Campanhas -->
+                        <div id="admin-campanhas" class="admin-section">
+                            <h2>Temas e Textos das Campanhas</h2>
+                            <div class="input-group">
+                                <label>Subtítulo Aba Campanhas</label>
+                                <input type="text" id="editCampanhasSubtitle">
+                            </div>
+
+                            <div id="admin-campanhas-list" class="admin-items-list mb-2">
+                                <!-- Renderizado via JS -->
+                            </div>
+                            <button class="btn btn-secondary mt-2" onclick="addNewCampaign()">+ Adicionar Nova Campanha</button>
+                            <button class="btn btn-primary" onclick="saveAdminCampaigns()">Salvar Alterações de Campanhas</button>
+                        </div>
+
+                        <div id="admin-mensagens" class="admin-section">
+                           <h2>Mensagens & Comentários</h2>
+                           <p class="mb-2">Acompanhe contatos recebidos e gerencie comentários do mural.</p>
+
+                           <h3>Mensagens de Contato</h3>
+                           <div id="admin-contatos-list" class="admin-items-list mb-2">
+                            <!-- Contatos renderizados via JS -->
+                        </div>
+
+                        <h3>Comentários do Mural</h3>
+                         <div id="admin-comentarios-list" class="admin-items-list">
+                         <!-- Comentários renderizados via JS -->
+                          </div>
+                        </div>
+                        
+                        <!-- Aba Sistema -->
+                        <div id="admin-sistema" class="admin-section">
+                            <h2>Manutenção do Site</h2>
+                            <p>Caso queira restaurar as informações para a versão inicial de fábrica do site, clique abaixo:</p>
+                            <br>
+                            <button class="btn btn-primary" disabled style="opacity:0.7; cursor:not-allowed;">Backup e restauração (em breve)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Galeria Projeto -->
+<div id="modal-galeria-projeto" class="modal-overlay">
+    <div class="modal-box" style="max-width: 900px;">
+        <h3 id="galeriaProjetoTitulo">Projeto</h3>
+        <p id="galeriaProjetoCategoria" style="font-weight: bold; color: var(--color-primary);"></p>
+        <p id="galeriaProjetoDescricao" style="margin-bottom: 1rem;"></p>
+
+        <div id="galeriaProjetoFotos" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+            <!-- Fotos via JS -->
+        </div>
+
+        <div class="modal-actions mt-2">
+            <button class="btn btn-secondary" onclick="closeProjectGallery()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Galeria Campanha -->
+<div id="modal-galeria-campanha" class="modal-overlay">
+    <div class="modal-box" style="max-width: 900px;">
+        <h3 id="galeriaCampanhaTitulo">Campanha</h3>
+        <p id="galeriaCampanhaObjetivo" style="margin-bottom: 1rem;"></p>
+
+        <div id="galeriaCampanhaFotos" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem;">
+            <!-- Fotos via JS -->
+        </div>
+
+        <div class="modal-actions mt-2">
+            <button class="btn btn-secondary" onclick="closeCampaignGallery()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Foto Ampliada -->
+<div id="modal-foto-ampliada" class="modal-overlay">
+    <div class="modal-box" style="max-width: 900px; text-align: center;">
+        <img id="fotoAmpliadaImg" src="" style="max-width: 100%; max-height: 70vh; border-radius: 12px; object-fit: contain;">
+
+        <div class="modal-actions mt-2" style="justify-content: center;">
+            <button class="btn btn-secondary" onclick="fotoAnterior()">← Anterior</button>
+            <button class="btn btn-secondary" onclick="closeFotoAmpliada()">Fechar</button>
+            <button class="btn btn-primary" onclick="proximaFoto()">Próxima →</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Editar Projeto -->
+    <div id="modal-projeto" class="modal-overlay">
+        <div class="modal-box">
+            <h3 id="modal-project-title">Editar Projeto</h3>
+            <input type="hidden" id="modal-project-index" value="-1">
+            <div class="input-group">
+                <label>Nome do Projeto / Tema</label>
+                <input type="text" id="modProjTitle">
+            </div>
+            <div class="input-group">
+                <label>Descrição</label>
+                <textarea id="modProjDesc" rows="3"></textarea>
+            </div>
+            <div class="input-group">
+                <label>Categoria principal (ex: Educação, Dança)</label>
+                <input type="text" id="modProjCat">
+            </div>
+            <div class="input-group">
+                <label>Imagem principal (URL) ou deixe em branco p/ usar cor</label>
+                <input type="file" id="modProjImg" accept="image/*">
+                <label style="margin-top:1rem;">Fotos extras da galeria (até 10)</label>
+               <input type="file" id="modProjGallery" accept="image/*" multiple>
+               <small style="display:block; margin-top:0.5rem; color:#64748B;">
+               Você pode selecionar várias imagens segurando CTRL.
+               </small>
+                <small style="display:block; margin-top:0.3rem; color:#64748B;">
+                Formatos permitidos: JPG, PNG e WEBP • Máximo de 5MB por imagem.
+                </small>
+                <small id="modProjImgAtual" style="display:block; margin-top:0.5rem; color:#64748B;"></small>
+            </div>
+            <div class="modal-actions mt-2">
+                <button class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveProjectModal()">Salvar Projeto</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Login (Área Restrita) -->
+    <div id="modal-login" class="modal-overlay">
+        <div class="modal-box" style="max-width: 400px; text-align: center;">
+            <h3 style="margin-bottom: 1.5rem; color: var(--color-primary);"><i class='bx bx-lock'></i> Acesso Restrito</h3>
+            <p style="margin-bottom: 2rem; color: var(--color-text-light);">Insira seu usuário e senha de administrador.</p>
+            <form id="loginForm">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="text" id="adminUsername" placeholder="Usuário" required style="text-align: center; font-size: 1.1rem;">
+    </div>
+    <div class="input-group">
+        <input type="password" id="adminPassword" placeholder="Senha" required style="text-align: center; font-size: 1.2rem;">
+    </div>
+    <div class="modal-actions" style="justify-content: center; margin-top: 1rem;">
+        <button type="button" class="btn btn-secondary" onclick="closeLoginModal()">Cancelar</button>
+        <button type="submit" class="btn btn-primary" id="loginBtn">Entrar</button>
+    </div>
+    <p id="loginError" style="color: red; margin-top: 1rem; display: none; font-weight: bold;">Usuário ou senha incorretos!</p>
+           </form>
+        </div>
+    </div>
+
+    <!-- Modal História da ONG -->
+<div id="modal-historia" class="modal-overlay">
+    <div class="modal-box historia-modal-box">
+        <div class="historia-modal-content">
+            <h3>Nossa História</h3>
+
+            <p>
+                A Favela em Ação nasceu em 2020, da ideia de um grupo de amigos, com o objetivo de
+                transformar a vida de crianças, adolescentes e jovens em situação de vulnerabilidade na
+                comunidade de Vila Aliança.
+            </p>
+
+            <p>
+                Em meio a um cenário de violência, desigualdades e poucas
+                oportunidades, o coletivo cultural se dedica a oferecer atividades totalmente gratuitas nas
+                áreas de educação, cultura, esporte e cidadania, tudo na sede da Associação dos
+                Moradores de Nova Aliança em Bangu.
+            </p>
+
+            <p>
+                Nos últimos quatro anos, já impactamos diretamente a vida de 485 crianças e
+                dolescentes de 6 a 17 anos, através de oficinas de balé, teatro, boxe, alfabetização,
+                reforço escolar, contação de histórias e educação ambiental e climática.
+            </p>
+
+            <p>
+                Mas nossos resultados vão além dos números: tocamos profundamente vidas, inspiramos sonhos e
+                plantamos as sementes de um futuro mais promissor para toda a comunidade.
+            </p>
+
+            <div class="modal-actions mt-2" style="justify-content:center;">
+                <button class="btn btn-primary" onclick="closeHistoriaModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Premiações e Parceiros -->
+<div id="modal-parceiros" class="modal-overlay">
+    <div class="modal-box parceiros-modal-box">
+        <h3>Premiações e Parceiros</h3>
+
+        <p class="parceiros-intro">
+            Conheça algumas instituições, projetos e parceiros que contribuem para fortalecer o impacto social do Favela em Ação.
+        </p>
+
+        <h4>Parceiros</h4>
+
+        <div class="parceiros-grid">
+            <div class="parceiro-card">
+                <img src="{% static 'assets/parceiros/uniao-rio.png' %}" alt="União Rio">
+                <p>Doação de cestas básicas e alimentos.</p>
+            </div>
+
+            <div class="parceiro-card">
+                <img src="{% static 'assets/parceiros/atados.png' %}" alt="Atados">
+                <p>Conexão de voluntariados aos nossos projetos.</p>
+            </div>
+
+            <div class="parceiro-card">
+                <img src="{% static 'assets/parceiros/circo-vostok.png' %}" alt="Circo Vostok">
+                <p>Acesso a programas culturais.</p>
+            </div>
+
+            <div class="parceiro-card">
+                <img src="{% static 'assets/parceiros/legacy-school.png' %}" alt="Legacy School">
+                <p>Acesso a programas culturais.</p>
+            </div>
+
+            <div class="parceiro-card">
+                <img src="{% static 'assets/parceiros/fundacao-fenomenos.png' %}" alt="Fundação Fenômenos">
+                <p>Acesso a recursos técnicos e financeiros.</p>
+            </div>
+
+            <div class="parceiro-card">
+                <img src="{% static 'assets/parceiros/theatro-bangu.png' %}" alt="Theatro Bangu Shopping">
+                <p>Acesso a programas culturais.</p>
+            </div>
+        </div>
+
+        <h4>Premiação</h4>
+
+        <div class="premiacao-card">
+            <p>
+                O Favela em Ação também foi destaque em iniciativas ligadas à Fundação Fenômenos Academy.
+            </p>
+
+            <a href="https://exame.com/esg/fundacao-fenomenos-organizacao-social-de-ronaldo-nazario-quer-golear-contra-a-desigualdade-social/"
+               target="_blank"
+               class="btn btn-primary">
+                Ler notícia na Exame
+            </a>
+        </div>
+
+        <div class="modal-actions mt-2" style="justify-content:center;">
+            <button class="btn btn-secondary" onclick="closeParceirosModal()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Apoio -->
+<div id="modal-apoio" class="modal-overlay">
+    <div class="modal-box apoio-modal-box">
+        <h3>Apoio</h3>
+
+        <p class="apoio-intro">
+            O Favela em Ação conta com apoios importantes que fortalecem nossas atividades educacionais, culturais e sociais.
+        </p>
+
+        <div class="apoio-card">
+            <img src="{% static 'assets/parceiros/fundacao-abrinq.png' %}" alt="Fundação Abrinq">
+
+            <div>
+                <h4>Projeto Alfabetização para Todos</h4>
+                <p>
+                    Apoio voltado ao fortalecimento das ações de alfabetização, contribuindo para o desenvolvimento educacional de crianças e adolescentes atendidos pelo projeto.
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-actions mt-2" style="justify-content:center;">
+            <button class="btn btn-secondary" onclick="closeApoioModal()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Modal Doação Pix -->
+<div id="modal-doacao" class="modal-overlay">
+    <div class="modal-box" style="max-width: 450px; text-align: center;">
+        <h3 style="color: var(--color-primary); margin-bottom: 1rem;">
+            <i class='bx bx-heart'></i> Apoie a Favela em Ação
+        </h3>
+
+        <p style="margin-bottom: 1rem;">
+            Sua contribuição ajuda a manter nossos projetos sociais ativos.
+        </p>
+
+        <img
+            src="{% static 'assets/qrcode-pix.jpg' %}"
+            alt="QR Code Pix"
+            style="width: 260px; max-width: 100%; border-radius: 12px; margin: 1rem auto; display: block;"
+        >
+
+        <p><strong>Chave Pix CNPJ:</strong></p>
+
+        <div style="background:#F1F5F9; padding:0.8rem; border-radius:8px; margin-bottom:1rem; word-break:break-all;">
+            <span id="pixKey">3279084000191</span>
+        </div>
+
+        <button class="btn btn-secondary" onclick="copyPixKey()">
+            <i class='bx bx-copy'></i> Copiar chave Pix
+        </button>
+
+        <div class="modal-actions mt-2" style="justify-content:center;">
+            <button class="btn btn-primary" onclick="closeDonationModal()">Fechar</button>
+        </div>
+    </div>
+</div>
+
+    <!-- Global Footer -->
+    <footer class="global-footer">
+        <div class="footer-bottom">
+            <p><strong>Coletivo Cultural e Social Favela em Ação</strong> &copy; 2026 <span id="admin-trigger" style="cursor: pointer; opacity: 0.2; margin-left: 10px;" title="Área Restrita do Admin"><i class='bx bx-lock-alt'></i></span></p>
+            <p>Endereço: Rua Severina Novais, 260, Vila Aliança, Bangu,  Rio de Janeiro - RJ | Contatos: (21) 98933-0529 | Aliancapelobem2023@gmail.com</p>
+            <div class="footer-socials">
+                <a href="https://wa.me/5521989330529?text=Olá!%20Conheci%20o%20Favela%20em%20Ação%20pelo%20site%20e%20gostaria%20de%20mais%20informações." target ="_blank"> <i class='bx bxl-whatsapp'></i> </a>
+                <a href="https://www.instagram.com/favelaemacaooficial/" target ="_blank"> <i class='bx bxl-instagram'> </i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+
+    <!-- Modal Nós na Mídia -->
+<div id="modal-midia" class="modal-overlay">
+    <div class="modal-box midia-modal-box">
+
+        <h3>Nós na Mídia</h3>
+
+        <p class="midia-intro">
+            Confira algumas matérias e reportagens sobre o trabalho desenvolvido pelo projeto Favela em Ação.
+        </p>
+
+        <div class="midia-links">
+
+            <a href="https://radio93.com.br/noticias/espaco-arolde-de-oliveira/espaco-social-conheca-o-projeto-que-ajuda-criancas-e-jovens-na-vila-alianca/?"
+               target="_blank"
+               class="midia-link-card">
+
+                <h4>Projeto ajuda crianças e jovens na Vila Aliança</h4>
+
+                <span>Ler matéria →</span>
+            </a>
+
+            <a href="https://exame.com/esg/fundacao-fenomenos-organizacao-social-de-ronaldo-nazario-quer-golear-contra-a-desigualdade-social/"
+               target="_blank"
+               class="midia-link-card">
+
+                <h4>Fundação Fenômenos destaca impacto social do projeto</h4>
+
+                <span>Ler matéria →</span>
+            </a>
+
+            <a href="https://radio93.com.br/noticias/espaco-arolde-de-oliveira/espaco-social-saiba-como-ajudar-jovens-a-terem-uma-pascoa-mais-doce/"
+               target="_blank"
+               class="midia-link-card">
+
+                <h4>Ação de Páscoa beneficia jovens da comunidade</h4>
+
+                <span>Ler matéria →</span>
+            </a>
+
+            <a href="https://radio93.com.br/noticias/espaco-arolde-de-oliveira/espaco-social-conheca-a-linda-acao-promovida-pelo-projeto-favela-em-acao/"
+               target="_blank"
+               class="midia-link-card">
+
+                <h4>Conheça a ação promovida pelo Favela em Ação</h4>
+
+                <span>Ler matéria →</span>
+            </a>
+
+        </div>
+
+        <div class="modal-actions mt-2" style="justify-content:center;">
+            <button class="btn btn-secondary"
+                    onclick="closeMidiaModal()">
+                Fechar
+            </button>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
