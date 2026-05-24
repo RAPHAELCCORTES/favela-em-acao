@@ -188,6 +188,19 @@ def salvar_projeto(request):
             projeto.descricao = descricao
             projeto.categoria = categoria
 
+        else:
+
+            projeto = Projeto.objects.create(
+                titulo=titulo,
+                descricao=descricao,
+                categoria=categoria
+            )
+
+        if imagem:
+            projeto.imagem = imagem
+
+        projeto.save()
+
             if imagem:
 
                 if not arquivo_eh_imagem(imagem):
